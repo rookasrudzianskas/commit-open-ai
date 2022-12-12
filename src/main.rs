@@ -135,6 +135,7 @@ async fn main() -> Result<(), ()> {
         None
     };
 
+
     let completion = client
         .complete_prompt(prompt_args.build().unwrap())
         .await
