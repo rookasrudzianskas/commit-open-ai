@@ -95,7 +95,7 @@ async fn main() -> Result<(), ()> {
             "git diff HEAD\\^!\n{}\n\n# Write a commit message describing the changes and the reasoning behind them\ngit commit -F- <<EOF",
             output
         ))
-        .engine("code-davinci-003")
+        .engine("davinci")
         .temperature(0.0)
         .max_tokens(2000)
         .stop(vec!["EOF".into()]);
