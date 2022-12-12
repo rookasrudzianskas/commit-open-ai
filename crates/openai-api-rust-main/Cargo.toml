@@ -1,10 +1,10 @@
 [package]
 name = "openai-api"
 version = "0.1.5-alpha.0"
-authors = ["Josh Kuhn <deontologician@gmail.com>"]
+authors = ["Rokas Rudzianskas <rokas.rudzianskas@gmail.com>"]
 license-file = "LICENSE"
 edition = "2018"
-description = "OpenAI API library for rust"
+description = "OpenAI API library for rust Modified"
 homepage = "https://github.com/deontologician/openai-api-rust/"
 repository = "https://github.com/deontologician/openai-api-rust/"
 keywords = ["openai", "gpt3"]
