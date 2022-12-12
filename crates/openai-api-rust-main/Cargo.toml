@@ -1,6 +1,6 @@
 [package]
-name = "openai-api"
-version = "0.1.5-alpha.0"
+name = "openai-api-modified"
+version = "0.1.5"
 authors = ["Rokas Rudzianskas <rokas.rudzianskas@gmail.com>"]
 license-file = "LICENSE"
 edition = "2018"
