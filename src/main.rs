@@ -130,11 +130,10 @@ async fn main() -> Result<(), ()> {
 
         let spinner = vs.choose(&mut rand::thread_rng()).unwrap().clone();
 
-        Some(Spinner::new(spinner, "🎆 Magic is Happening".into()))
+        Some(Spinner::new(spinner, "\n🎆 Magic is Happening".into()))
     } else {
         None
     };
-
 
     let completion = client
         .complete_prompt(prompt_args.build().unwrap())
