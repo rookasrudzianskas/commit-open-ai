@@ -14,8 +14,9 @@ use spinners::{Spinner, Spinners};
 #[derive(Parser)]
 #[command(version)]
 #[command(name = "Auto Commit")]
-#[command(author = "Miguel Piedrafita <soy@miguelpiedrafita.com>")]
-#[command(about = "Automagically generate commit messages.", long_about = None)]
+#[command(author = "Rokas Rudzianskas <rokas.rudzenskas@gmail.com>")]
+#[command(about = "Give yourself some magic, and magically generate commit messages.", long_about = None)]
+
 struct Cli {
     #[clap(flatten)]
     verbose: Verbosity<InfoLevel>,
@@ -45,7 +46,7 @@ async fn main() -> Result<(), ()> {
         .init();
 
     let api_token = std::env::var("OPENAI_API_KEY").unwrap_or_else(|_| {
-        error!("Please set the OPENAI_API_KEY environment variable.");
+        error!("Please add your OPENAI_API_KEY environment variable.");
         std::process::exit(1);
     });
 
@@ -53,7 +54,7 @@ async fn main() -> Result<(), ()> {
         .arg("diff")
         .arg("--staged")
         .output()
-        .expect("Couldn't find diff.")
+        .expect("Couldn't find difference in the files.")
         .stdout;
 
     let git_staged_cmd = str::from_utf8(&git_staged_cmd).unwrap();
