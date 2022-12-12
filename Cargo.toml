@@ -2,7 +2,7 @@
 license = "MIT"
 edition = "2021"
 version = "0.1.4"
-name = "aa"
+name = "ac"
 readme = "README.md"
 categories = ["command-line-utilities"]
 homepage = "https://github.com/rookasrudzianskas/commit-open-ai"
