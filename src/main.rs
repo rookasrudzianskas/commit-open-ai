@@ -13,7 +13,7 @@ use spinners::{Spinner, Spinners};
 
 #[derive(Parser)]
 #[command(version)]
-#[command(name = "Auto Commit")]
+#[command(name = "Magical Commit")]
 #[command(author = "Rokas Rudzianskas <rokas.rudzenskas@gmail.com>")]
 #[command(about = "Give yourself some magic, and magically generate commit messages.", long_about = None)]
 
@@ -54,7 +54,7 @@ async fn main() -> Result<(), ()> {
         .arg("diff")
         .arg("--staged")
         .output()
-        .expect("Couldn't find difference in the files.")
+        .expect("🔴 Couldn't find difference in the files.")
         .stdout;
 
     let git_staged_cmd = str::from_utf8(&git_staged_cmd).unwrap();
@@ -81,14 +81,15 @@ async fn main() -> Result<(), ()> {
         .arg("diff")
         .arg("HEAD")
         .output()
-        .expect("Couldn't find diff.")
+        .expect("Couldn't find difference.")
         .stdout;
     let output = str::from_utf8(&output).unwrap();
 
     if !cli.dry_run {
-        info!("Loading Data...");
+        info!("🌎Loading Data");
     }
 
+    // Generates the OPEN AI prompt, using some context, and also the data.
     let prompt_args = openai_api::api::CompletionArgs::builder()
         .prompt(format!(
             "git diff HEAD\\^!\n{}\n\n# Write a commit message describing the changes and the reasoning behind them\ngit commit -F- <<EOF",
@@ -129,7 +130,7 @@ async fn main() -> Result<(), ()> {
 
         let spinner = vs.choose(&mut rand::thread_rng()).unwrap().clone();
 
-        Some(Spinner::new(spinner, "Analyzing Codebase...".into()))
+        Some(Spinner::new(spinner, "🎆 Magic is Happening".into()))
     } else {
         None
     };
@@ -140,7 +141,7 @@ async fn main() -> Result<(), ()> {
         .expect("Couldn't complete prompt.");
 
     if sp.is_some() {
-        sp.unwrap().stop_with_message("Finished Analyzing!".into());
+        sp.unwrap().stop_with_message("✅Magic happened!".into());
     }
 
     let commit_msg = completion.choices[0].text.to_owned();
@@ -150,12 +151,12 @@ async fn main() -> Result<(), ()> {
         return Ok(());
     } else {
         info!(
-            "Proposed Commit:\n------------------------------\n{}\n------------------------------",
+            "Suggested Commit:\n------------------------------\n{}\n------------------------------",
             commit_msg
         );
 
         if !cli.force {
-            let answer = Question::new("Do you want to continue? (Y/n)")
+            let answer = Question::new("Do you want to continue? (Yes/no)")
                 .yes_no()
                 .until_acceptable()
                 .default(Answer::YES)
@@ -166,7 +167,7 @@ async fn main() -> Result<(), ()> {
                 error!("Commit aborted by user.");
                 std::process::exit(1);
             }
-            info!("Committing Message...");
+            info!("💬 Committing Message...");
         }
     }
 
