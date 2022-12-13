@@ -1,5 +1,7 @@
 # Give yourself some Christmas magic with this script
 
+#### 🔴 Disclaimer! Do not use it, it is not working correctly due to the issues of one package. I am going to fix it in the upcoming days. 🔴
+
 A CLI tool which generates commit messages from your staged changes, 
 which was built in Rust and using [OpenAI's Codex](https://openai.com/blog/openai-codex/).
 
